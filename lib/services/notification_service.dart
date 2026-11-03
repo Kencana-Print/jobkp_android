@@ -1,48 +1,61 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter/foundation.dart'; // Wajib ada untuk membaca kIsWeb
 
 class NotificationService {
   final FlutterLocalNotificationsPlugin _notificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
   Future<void> init() async {
-    // [PERBAIKAN 1]
-    // Ganti 'ic_launcher' menjadi 'ic_notification'.
-    // Ini adalah nama file baru yang baru saja Anda buat di folder 'drawable'.
+    // Jika aplikasi berjalan di Web, lewati inisialisasi notifikasi mobile
+    if (kIsWeb) {
+      print(
+        "Aplikasi berjalan di Web: Melewati inisialisasi notifikasi lokal.",
+      );
+      return;
+    }
+
+    // Kode di bawah ini hanya akan dieksekusi di platform Mobile (Android/iOS)
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('ic_notification'); // <-- DIUBAH DI SINI
+        AndroidInitializationSettings('ic_notification');
 
     const DarwinInitializationSettings initializationSettingsIOS =
         DarwinInitializationSettings();
 
     const InitializationSettings initializationSettings =
         InitializationSettings(
-      android: initializationSettingsAndroid,
-      iOS: initializationSettingsIOS,
-    );
+          android: initializationSettingsAndroid,
+          iOS: initializationSettingsIOS,
+        );
 
     await _notificationsPlugin.initialize(initializationSettings);
 
-    // Minta Izin Notifikasi (Untuk Android 13+)
+    // Minta Izin Notifikasi (Hanya untuk Android 13+)
     final bool? result = await _notificationsPlugin
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
+          AndroidFlutterLocalNotificationsPlugin
+        >()
         ?.requestNotificationsPermission();
 
     print("Izin Notifikasi Diberikan: $result");
   }
 
   Future<void> showNotification(int id, String title, String body) async {
-    // [PERBAIKAN 2]
-    // Tentukan 'smallIcon' di sini juga menggunakan nama baru
+    // Jika aplikasi berjalan di Web, batalkan perintah menampilkan notifikasi lokal
+    if (kIsWeb) {
+      print("Aplikasi berjalan di Web: Notifikasi lokal diabaikan.");
+      return;
+    }
+
+    // Kode di bawah ini hanya dieksekusi di platform Mobile
     const AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
-      'jobkp_channel_id',
-      'JobKP Notifications',
-      channelDescription: 'Notifikasi untuk status pekerjaan JobKP',
-      importance: Importance.max,
-      priority: Priority.high,
-      icon: 'ic_notification', // <-- TAMBAHKAN/UBAH BARIS INI
-    );
+          'jobkp_channel_id',
+          'JobKP Notifications',
+          channelDescription: 'Notifikasi untuk status pekerjaan JobKP',
+          importance: Importance.max,
+          priority: Priority.high,
+          icon: 'ic_notification',
+        );
 
     const NotificationDetails notificationDetails = NotificationDetails(
       android: androidNotificationDetails,
