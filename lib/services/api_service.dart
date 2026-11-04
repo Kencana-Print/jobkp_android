@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:jobkp_flutter/data/job_model.dart';
 import 'package:jobkp_flutter/data/user_login_model.dart';
 
-import '../config.dart'; // Pastikan path ini benar
+import 'package:jobkp_flutter/Config.dart';
 import './session_manager.dart';
 import '../data/jobit_det_model.dart';
 import '../data/jobit_model.dart'; // [FIX] Impor ini sekarang digunakan
@@ -62,7 +62,6 @@ class ApiService {
 
   static Future<Map<String, dynamic>> login(
       String username, String password) async {
-    // ... (Kode Anda sudah benar)
     try {
       final uri = Uri.parse('$_baseUrl/auth/login');
       final response = await http
@@ -70,17 +69,26 @@ class ApiService {
             uri,
             headers: {'Content-Type': 'application/json; charset=UTF-8'},
             body: jsonEncode({
-              'user_kode': username,
+              'user_kode': username.trim(),
               'password': password,
             }),
           )
           .timeout(const Duration(seconds: 15));
 
+      dynamic body;
+      try {
+        body = jsonDecode(response.body);
+      } catch (_) {
+        if (response.statusCode != 200) {
+          throw Exception('Server Error (${response.statusCode}): Terjadi kendala respon dari server backend.');
+        }
+        throw Exception('Respon server tidak berformat JSON yang valid.');
+      }
+
       if (response.statusCode == 200) {
-        return jsonDecode(response.body);
+        return body as Map<String, dynamic>;
       } else {
-        final responseBody = jsonDecode(response.body);
-        throw Exception(responseBody['message'] ?? 'Login gagal');
+        throw Exception(body['message'] ?? 'Login gagal (Status: ${response.statusCode})');
       }
     } catch (e) {
       print('Error di ApiService.login: $e');

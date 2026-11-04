@@ -18,7 +18,7 @@ import 'ganti_password_page.dart';
 // Impor service manager dan notifikasi
 import '../services/session_manager.dart';
 import '../services/notification_service.dart'; // [FIX] Impor service notifikasi
-import '../../../../config.dart'; // [FIX] Impor config
+import 'package:jobkp_flutter/Config.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});

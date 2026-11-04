@@ -11,7 +11,7 @@ import '../data/detasset_model.dart';
 import '../core/widget/empty_data_animation.dart';
 import 'widget/detasset_list_loading.dart';
 import 'perbaikan_page.dart';
-import '../../../../config.dart'; // [FIX] Tambahkan config
+import 'package:jobkp_flutter/Config.dart'; // [FIX] Tambahkan config
 
 class DetAssetPage extends StatefulWidget {
   final String? nama;

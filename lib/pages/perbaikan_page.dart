@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 
 import '../data/detasset_model.dart';
 import 'detasset_page.dart';
-import '../../../../config.dart';
+import 'package:jobkp_flutter/Config.dart';
 import '../services/session_manager.dart';
 
 class _RedirectException implements Exception {}

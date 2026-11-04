@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-import '../config.dart';
+import 'package:jobkp_flutter/Config.dart';
 import '../data/job_model.dart';
 import '../data/technician_model.dart';
 import 'edit_konfirmasi_page.dart';

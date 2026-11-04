@@ -8,7 +8,7 @@ import '../data/jobit_det_model.dart';
 // [FIX] Hapus ApiService, kita ganti dengan http
 // import '../services/api_service.dart';
 import '../services/session_manager.dart'; // [FIX] Tambahkan
-import '../../../../config.dart'; // [FIX] Tambahkan
+import 'package:jobkp_flutter/Config.dart'; // [FIX] Tambahkan
 
 class JobItFormPage extends StatefulWidget {
   final String? nomor; // Jika 'nomor' ada, ini mode Edit

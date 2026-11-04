@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'dart:convert';
-import '../../../../config.dart';
+import 'package:jobkp_flutter/Config.dart';
 import '../services/session_manager.dart';
 
 //==============================================================================

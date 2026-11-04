@@ -5,7 +5,7 @@ import '../services/session_manager.dart';
 import '../data/user_login_model.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../../../../config.dart';
+import 'package:jobkp_flutter/Config.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -108,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
     } catch (e, stackTrace) {
       print('[DEBUG] Terjadi ERROR di blok try-catch: $e');
       print('[DEBUG] Stack Trace: $stackTrace');
-      setState(() => errorMessage = "Terjadi kesalahan: ${e.toString()}");
+      setState(() => errorMessage = e.toString().replaceFirst("Exception: ", ""));
     } finally {
       if (mounted) {
         setState(() => isLoading = false);

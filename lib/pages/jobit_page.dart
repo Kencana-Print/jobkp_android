@@ -9,7 +9,7 @@ import '../services/session_manager.dart';
 import 'jobit_form_page.dart';
 import 'jobit_det_page.dart';
 import '../core/widget/empty_data_animation.dart';
-import '../../../../config.dart';
+import 'package:jobkp_flutter/Config.dart';
 
 class JobItPage extends StatefulWidget {
   const JobItPage({super.key});

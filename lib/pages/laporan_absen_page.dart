@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 
 // [FIX] Import Config dan SessionManager
-import '../../../../config.dart'; // Sesuaikan path jika perlu
+import 'package:jobkp_flutter/Config.dart'; // Sesuaikan path jika perlu
 import '../services/session_manager.dart'; // Sesuaikan path jika perlu
 
 class LaporanAbsenPage extends StatefulWidget {

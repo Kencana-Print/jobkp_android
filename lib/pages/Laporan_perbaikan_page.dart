@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-import '../../../../config.dart';
+import 'package:jobkp_flutter/Config.dart';
 import '../services/session_manager.dart';
 import '../data/laporan_perbaikan_model.dart';
 // [FIX] Impor file animasi (sesuaikan path jika perlu)
