@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'JobKP Flutter',
+      title: 'JobKP',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.light(
